@@ -98,6 +98,7 @@ def callback_handler(call):
             elif call.data in get_phone_callbacks():
                 phones = get_info_phone(call.data)
                 for phone in phones:
+                    print('help')
                     send_phone(
                         call=call,
                         bot=bot,

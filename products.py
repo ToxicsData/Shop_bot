@@ -13,11 +13,11 @@ def create_table_product():
             description TEXT,
             price INT,
             photo VARCHAR,
-            memory VARCHAR,
             color VARCHAR,
             brand VARCHAR,
             call_back VARCHAR,
-            url VARCHAR);"""
+            url VARCHAR),
+            memory VARCHAR,;"""
     cursor.execute(query=query)
     conn.commit()
     
@@ -25,16 +25,16 @@ def insert_product(name: str,
                   description: str, 
                   price: int, 
                   photo: str, 
-                  memory: str,
                   color: str, 
                   brand: str, 
                   call_back: str,
-                  url: str):
+                  url: str,
+                  memory: str,):
     query = f"""
         INSERT INTO products (
-            name, description, price, photo, memory, color, brand, call_back, url
+            name, description, price, photo, color, brand, call_back, url, memory
         )VALUES (
-            '{name}', '{description}', {price}, '{photo}', '{memory}', '{color}', '{brand}', '{call_back}', '{url}'
+            '{name}', '{description}', {price}, '{photo}', '{color}', '{brand}', '{call_back}', '{url}', '{memory}'
         );"""
     cursor.execute(query=query)
     conn.commit()
@@ -85,8 +85,7 @@ def get_product_image(image_url):
 
 def send_phone(call,  bot: telebot.TeleBot, phone: tuple):
     markup = types.InlineKeyboardMarkup(row_width=2)
-    item1 = types.InlineKeyboardButton('Добавить в корзину', call_back=str(phone[0]))
-    item2 = types.InlineKeyboardButton('Полная информация', url=phone[9])
+    item2 = types.InlineKeyboardButton('Полная информация', url=phone[8])
     markup.add(item2)
     image = get_product_image(phone[4])
     text = f"""
@@ -94,7 +93,7 @@ def send_phone(call,  bot: telebot.TeleBot, phone: tuple):
 Цвет: {phone[6].title()}
 Цена: {phone[3]} ₸
 Описание: {phone[2]}
-"""
+""" 
     bot.send_photo(
             chat_id=call.message.chat.id,
             photo=image,
