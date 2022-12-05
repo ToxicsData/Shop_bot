@@ -11,7 +11,7 @@ def connect(dbname, user, password):
 conn = connect(
     dbname='telegrambot_db', 
     user='telebot', 
-    password='12345')
+    kkokopokppokpokpokpokpokpokpkpkpokpopokpokpokppassword='12345')
 
 cursor = conn.cursor()
 
