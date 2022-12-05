@@ -84,22 +84,25 @@ def get_product_image(image_url):
 # id | name | description | price | photo | memory | color | brand | call_back | url
 
 def send_phone(call,  bot: telebot.TeleBot, phone: tuple):
+    print(phone)
     markup = types.InlineKeyboardMarkup(row_width=2)
-    item1 = types.InlineKeyboardButton('Добавить в корзину', call_back=str(phone[0]))
     item2 = types.InlineKeyboardButton('Полная информация', url=phone[9])
     markup.add(item2)
     image = get_product_image(phone[4])
+    
     text = f"""
 Телефон: {phone[1]}{phone[5]}
 Цвет: {phone[6].title()}
 Цена: {phone[3]} ₸
 Описание: {phone[2]}
 """
+
     bot.send_photo(
             chat_id=call.message.chat.id,
             photo=image,
             caption=text,
             reply_markup=markup)
+    
 
 
 # from pprint import pprint
