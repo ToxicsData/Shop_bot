@@ -89,5 +89,5 @@ def add_products_db(items: list[dict]):
 
 
 
-# items = parse(LIST_BRANDS, page=2)
-# add_products_db(items=items)
+items = parse(LIST_BRANDS, page=2)
+add_products_db(items=items)

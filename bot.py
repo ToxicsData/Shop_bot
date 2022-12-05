@@ -15,7 +15,7 @@ def start(message: types.Message):
     item2 = types.KeyboardButton('Отправить геоданные', request_location=True)
     markup.add(item1, item2)
 
-    text = "Привет это Бот Мамина подруги \n Для получения данных ЗАРЕГИСТРИРУЙТЕСЬ"
+    text = "Привет это бот диаса \n Для получения данных ЗАРЕГИСТРИРУЙТЕСЬ"
     bot.send_message(message.chat.id, text=text, reply_markup=markup)
 
 
