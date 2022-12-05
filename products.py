@@ -53,11 +53,11 @@ def get_brands():
 def get_phone_callbacks(brand: str = None):
     if brand is None:
         query = f"""
-            SELECT call_back 
+            SELECT callback 
             FROM products;""" 
     else:
         query = f"""
-            SELECT call_back 
+            SELECT callback 
             FROM products
             where brand = '{brand}';""" 
     
@@ -65,11 +65,11 @@ def get_phone_callbacks(brand: str = None):
     response = cursor.fetchall()
     return {i[0]: i[0].title().replace('_', ' ') for i in response}
 
-def get_info_phone(call_back: str):
+def get_info_phone(callback: str):
     query = f"""
         SELECT * 
         FROM products
-        where call_back = '{call_back}';"""
+        where callback = '{callback}';"""
 
     cursor.execute(query=query)
     response = cursor.fetchall()
@@ -77,8 +77,9 @@ def get_info_phone(call_back: str):
 
 
 def get_product_image(image_url):
-    urllib.request.urlretrieve(image_url, "gfg.png")
-    image = Image.open("gfg.png")
+    print(image_url)
+    urllib.request.urlretrieve(image_url, "asd.png")
+    image = Image.open("asd.png")
     return image
 
 # id | name | description | price | photo | memory | color | brand | call_back | url
@@ -88,20 +89,17 @@ def send_phone(call,  bot: telebot.TeleBot, phone: tuple):
     item1 = types.InlineKeyboardButton('Добавить в корзину', call_back=str(phone[0]))
     item2 = types.InlineKeyboardButton('Полная информация', url=phone[9])
     markup.add(item2)
-    image = get_product_image(phone[4])
+    # image = get_product_image(phone[4])
     text = f"""
 Телефон: {phone[1]}{phone[5]}
 Цвет: {phone[6].title()}
 Цена: {phone[3]} ₸
 Описание: {phone[2]}
 """
+    print(text)
     bot.send_photo(
             chat_id=call.message.chat.id,
-            photo=image,
+            photo=open("gfg.png", 'rb'),
             caption=text,
             reply_markup=markup)
 
-
-# from pprint import pprint
-
-# pprint(get_info_phone(call_back='apple_iphone_11'))

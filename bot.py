@@ -74,6 +74,7 @@ def callback_handler(call):
         if call.message:
             if call.data in get_brands():
                 phones = get_phone_callbacks(call.data)
+                print(phones)
                 markup = create_inline_markup(
                     row_width=3,
                     **phones,
