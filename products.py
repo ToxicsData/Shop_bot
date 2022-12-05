@@ -20,7 +20,6 @@ def create_table_product():
             url VARCHAR);"""
     cursor.execute(query=query)
     conn.commit()
-    
 def insert_product(name: str, 
                   description: str, 
                   price: int, 
