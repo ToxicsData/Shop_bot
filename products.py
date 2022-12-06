@@ -85,9 +85,9 @@ def get_product_image(image_url):
 
 def send_phone(call,  bot: telebot.TeleBot, phone: tuple):
     markup = types.InlineKeyboardMarkup(row_width=2)
-    item1 = types.InlineKeyboardButton('Добавить в корзину', call_back=str(phone[0]))
+    item1 = types.InlineKeyboardButton('Добавить в корзину', callback_data=phone[0])
     item2 = types.InlineKeyboardButton('Полная информация', url=phone[9])
-    markup.add(item2)
+    markup.add(item1,item2)
     image = get_product_image(phone[4])
     text = f"""
 Телефон: {phone[1]}{phone[5]}
